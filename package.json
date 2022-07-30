@@ -1,9 +1,27 @@
 {
-  "name": "lyntouch-blocks",
-  "version": "1.0.0",
-  "description": "Various Wordpress Blocks",
-  "main": "index.js",
-  "repository": "https://github.com/asolopovas/lyntouch-blocks.git",
-  "author": "Andrius Solopovas",
-  "license": "MIT"
+    "name": "lyntouch-blocks",
+    "version": "1.0.0",
+    "description": "Various Wordpress Blocks",
+    "main": "build/index.js",
+    "repository": "https://github.com/asolopovas/lyntouch-blocks.git",
+    "author": "Andrius Solopovas",
+    "license": "MIT",
+    "scripts": {
+        "dev": "wp-scripts start",
+        "dev:hot": "wp-scripts start --hot",
+        "prod": "wp-scripts build",
+        "start:copy-php": "wp-scripts start --webpack-copy-php"
+
+    },
+
+    "devDependencies": {
+        "@wordpress/scripts": "^23.6.0"
+    },
+    "dependencies": {
+        "classnames": "^2.3.1",
+        "@wordpress/block-editor": "^9.1.0",
+        "@wordpress/blocks": "^11.3.1",
+        "@wordpress/core-data": "^4.2.1",
+        "@wordpress/hooks": "^3.4.1"
+    }
 }
