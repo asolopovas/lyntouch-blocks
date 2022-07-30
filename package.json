@@ -1,0 +1,9 @@
+{
+  "name": "lyntouch-blocks",
+  "version": "1.0.0",
+  "description": "Various Wordpress Blocks",
+  "main": "index.js",
+  "repository": "https://github.com/asolopovas/lyntouch-blocks.git",
+  "author": "Andrius Solopovas",
+  "license": "MIT"
+}
