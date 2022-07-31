@@ -22,11 +22,54 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 
+$lyntouchHot = file_exists(__DIR__ . '/build/hot');
 
 //  Register Blocks
+add_action('init', 'lyntouch_blocks_init');
 function lyntouch_blocks_init()
 {
     register_block_type(__DIR__ . '/build/lyn-columns');
     register_block_type(__DIR__ . '/build/lyn-column');
 }
-add_action('init', 'lyntouch_blocks_init');
+
+
+// function modify_block_type_metadata_settings_defaults($settings, $metadata)
+// {
+//     return $settings;
+// }
+// add_filter("block_type_metadata_settings", "modify_block_type_metadata_settings_defaults", 10, 2);
+
+function my_filter_block_type_metadata($metadata)
+{
+    if ('lyn/column' === $metadata['name']) {
+        // dd($metadata);
+
+        $style = str_replace('file:.', '', $metadata['editorStyle']);
+        $blockDir = basename(dirname($metadata['file']));
+
+        $args = array(
+            'handle' => sanitize_key("{$metadata['name']}"),
+            'src'    => plugin_dir_url(__FILE__) . 'build/' . $blockDir . $style,
+        );
+
+        wp_enqueue_block_style($metadata['name'], $args);
+    }
+    return $metadata;
+}
+add_filter('block_type_metadata', 'my_filter_block_type_metadata');
+
+// add_action('enqueue_block_editor_assets', 'lyntouch_block_editor_assets');
+// function lyntouch_block_editor_assets()
+// {
+//     global $lyntouchHot;
+//     $dir = new RecursiveDirectoryIterator(__DIR__ . '/build', RecursiveDirectoryIterator::SKIP_DOTS);
+//     foreach ($dir as $fileinfo) {
+//         if ($dir->isDir()) {
+//             $name =  basename($dir);
+//             $deps = require __DIR__ . "/build/$dir/index.asset.php";
+//             wp_enqueue_script("lyntouch-blocks-$name", plugins_url("build/$name/index.js", __FILE__), $deps['dependencies'], $deps['version'], false);
+//         }
+//     }
+
+//     // wp_enqueue_script('lyntouch-blocks', mix('js/blocks.js', __DIR__ . '/dist'), [], null, true);
+// }

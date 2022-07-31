@@ -6,5 +6,5 @@ module.exports = {
     plugins: [
         ...defaultConfig.plugins,
         new HotPlugin(),
-    ]
+    ],
 }

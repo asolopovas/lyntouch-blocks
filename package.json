@@ -8,10 +8,8 @@
     "license": "MIT",
     "scripts": {
         "dev": "wp-scripts start",
-        "dev:hot": "wp-scripts start --hot",
         "prod": "wp-scripts build",
-        "start:copy-php": "wp-scripts start --webpack-copy-php"
-
+        "hot": "wp-scripts start --hot"
     },
 
     "devDependencies": {
