@@ -32,31 +32,23 @@ function lyntouch_blocks_init()
     register_block_type(__DIR__ . '/build/lyn-column');
 }
 
-
-// function modify_block_type_metadata_settings_defaults($settings, $metadata)
+// function my_filter_block_type_metadata($metadata)
 // {
-//     return $settings;
+//     if ('lyn/column' === $metadata['name']) {
+
+//         $style = str_replace('file:.', '', $metadata['editorStyle']);
+//         $blockDir = basename(dirname($metadata['file']));
+
+//         $args = array(
+//             'handle' => sanitize_key("{$metadata['name']}"),
+//             'src'    => plugin_dir_url(__FILE__) . 'build/' . $blockDir . $style,
+//         );
+
+//         wp_enqueue_block_style($metadata['name'], $args);
+//     }
+//     return $metadata;
 // }
-// add_filter("block_type_metadata_settings", "modify_block_type_metadata_settings_defaults", 10, 2);
-
-function my_filter_block_type_metadata($metadata)
-{
-    if ('lyn/column' === $metadata['name']) {
-        // dd($metadata);
-
-        $style = str_replace('file:.', '', $metadata['editorStyle']);
-        $blockDir = basename(dirname($metadata['file']));
-
-        $args = array(
-            'handle' => sanitize_key("{$metadata['name']}"),
-            'src'    => plugin_dir_url(__FILE__) . 'build/' . $blockDir . $style,
-        );
-
-        wp_enqueue_block_style($metadata['name'], $args);
-    }
-    return $metadata;
-}
-add_filter('block_type_metadata', 'my_filter_block_type_metadata');
+// add_filter('block_type_metadata', 'my_filter_block_type_metadata');
 
 // add_action('enqueue_block_editor_assets', 'lyntouch_block_editor_assets');
 // function lyntouch_block_editor_assets()

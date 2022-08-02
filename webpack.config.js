@@ -1,10 +1,15 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config')
 const HotPlugin = require('./src/hot-plugin')
 
-module.exports = {
+let config = {
     ...defaultConfig,
     plugins: [
         ...defaultConfig.plugins,
         new HotPlugin(),
     ],
 }
+
+config.devServer.historyApiFallback = true
+config.devServer.allowedHosts = "all"
+
+module.exports = config
