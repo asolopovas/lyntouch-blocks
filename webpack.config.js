@@ -3,13 +3,15 @@ const HotPlugin = require('./src/hot-plugin')
 
 let config = {
     ...defaultConfig,
-    plugins: [
-        ...defaultConfig.plugins,
-        new HotPlugin(),
-    ],
 }
 
 config.devServer.historyApiFallback = true
 config.devServer.allowedHosts = "all"
+
+config.devServer.http2 = true
+config.devServer.https =  {
+  key: fs.readFileSync('ssl/localhost.key'),
+  cert: fs.readFileSync('ssl/localhost.key')
+},
 
 module.exports = config
